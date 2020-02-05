@@ -9,13 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var presentingModal: Bool = false
+    
     var body: some View {
-        Text("Hello World")
+        
+        let itemList = createItemList()
+        return NavigationView {
+            List(itemList) { item in
+                ItemCellView(itemPrice: item)
+            }
+            .navigationBarTitle("Items", displayMode: .automatic)
+            .navigationBarItems(trailing: Button("Add") {
+                self.presentingModal.toggle()
+                print(self.presentingModal)
+            }
+            .sheet(isPresented: $presentingModal,
+                   onDismiss: {
+                    self.presentingModal.toggle()
+            },
+                   content: {
+                    return AddItemView()
+            })
+                
+                .frame(width: 50.0, height: 30.0))
+        }
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+#endif
