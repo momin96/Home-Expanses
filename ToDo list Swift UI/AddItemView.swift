@@ -13,6 +13,7 @@ struct AddItemView: View {
 //    @Environment(\.presentationMode) var dismissModal
     
     @Binding var dismissModal: Bool
+    @Binding var itemList: [ItemPrice]
     
     @State private var itemField: String = ""
       @State private var priceField: String = ""
@@ -38,9 +39,10 @@ struct AddItemView: View {
             .navigationBarTitle("Add Item", displayMode: .inline)
             .navigationBarItems(trailing: Button("ADD") {
                 print("Add item button tapped")
-                let _ = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
-//                self.dismissModal.wrappedValue.dismiss()
+                let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
+                self.itemList.append(l)
                 self.dismissModal = false
+//                                self.dismissModal.wrappedValue.dismiss()
             }
             .frame(width: 50.0, height: 30.0))
                 

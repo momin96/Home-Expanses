@@ -12,7 +12,7 @@ struct ContentView: View {
     
     @State private var presentingModal: Bool = false
     
-    let itemList = createItemList()
+    @State private var itemList = createItemList()
     
     var body: some View {
         
@@ -29,7 +29,7 @@ struct ContentView: View {
                 self.presentingModal.toggle()
                 print("hi")
             }, content: {
-                return AddItemView(dismissModal: self.$presentingModal)
+                return AddItemView(dismissModal: self.$presentingModal, itemList: self.$itemList)
             }))
         }
     }
