@@ -12,27 +12,25 @@ struct ContentView: View {
     
     @State private var presentingModal: Bool = false
     
+    let itemList = createItemList()
+    
     var body: some View {
         
-        let itemList = createItemList()
-        return NavigationView {
+        NavigationView {
             List(itemList) { item in
                 ItemCellView(itemPrice: item)
             }
+                
             .navigationBarTitle("Items", displayMode: .automatic)
             .navigationBarItems(trailing: Button("Add") {
                 self.presentingModal.toggle()
-                print(self.presentingModal)
             }
-            .sheet(isPresented: $presentingModal,
-                   onDismiss: {
-                    self.presentingModal.toggle()
-            },
-                   content: {
-                    return AddItemView()
-            })
-                
-                .frame(width: 50.0, height: 30.0))
+            .sheet(isPresented: $presentingModal, onDismiss: {
+                self.presentingModal.toggle()
+                print("hi")
+            }, content: {
+                return AddItemView(dismissModal: self.$presentingModal)
+            }))
         }
     }
 }

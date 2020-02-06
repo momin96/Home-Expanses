@@ -10,7 +10,9 @@ import SwiftUI
 
 struct AddItemView: View {
     
-    @Environment(\.presentationMode) var dismissModal
+//    @Environment(\.presentationMode) var dismissModal
+    
+    @Binding var dismissModal: Bool
     
     @State private var itemField: String = ""
       @State private var priceField: String = ""
@@ -37,7 +39,8 @@ struct AddItemView: View {
             .navigationBarItems(trailing: Button("ADD") {
                 print("Add item button tapped")
                 let _ = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
-                self.dismissModal.wrappedValue.dismiss()
+//                self.dismissModal.wrappedValue.dismiss()
+                self.dismissModal = false
             }
             .frame(width: 50.0, height: 30.0))
                 
