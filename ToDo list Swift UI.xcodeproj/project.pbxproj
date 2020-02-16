@@ -17,6 +17,7 @@
 		0E01DF4F23EAD81E008E9D5A /* ItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E01DF4E23EAD81E008E9D5A /* ItemCellView.swift */; };
 		33FC6CC19756C43D0D245B4F /* Pods_ToDo_list_Swift_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */; };
 		5064590D23F95849000FD3DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5064590C23F95849000FD3DD /* GoogleService-Info.plist */; };
+		5064590F23F95891000FD3DD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5064590E23F95890000FD3DD /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		0E01DF4C23EAD577008E9D5A /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		0E01DF4E23EAD81E008E9D5A /* ItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellView.swift; sourceTree = "<group>"; };
 		5064590C23F95849000FD3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5064590E23F95890000FD3DD /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		712225F056E450B2F63C9768 /* Pods-ToDo list Swift UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.release.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.release.xcconfig"; sourceTree = "<group>"; };
 		E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo_list_Swift_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4402003EE9A73B2F7035CC5 /* Pods-ToDo list Swift UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.debug.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				0E01DF4C23EAD577008E9D5A /* AddItemView.swift */,
 				0E01DF3823EAC39A008E9D5A /* AppDelegate.swift */,
+				5064590E23F95890000FD3DD /* Service.swift */,
 				0E01DF3A23EAC39A008E9D5A /* SceneDelegate.swift */,
 				0E01DF3C23EAC39A008E9D5A /* ContentView.swift */,
 				0E01DF4E23EAD81E008E9D5A /* ItemCellView.swift */,
@@ -229,6 +232,7 @@
 				0E01DF3B23EAC39A008E9D5A /* SceneDelegate.swift in Sources */,
 				0E01DF3D23EAC39A008E9D5A /* ContentView.swift in Sources */,
 				0E01DF4D23EAD577008E9D5A /* AddItemView.swift in Sources */,
+				5064590F23F95891000FD3DD /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
