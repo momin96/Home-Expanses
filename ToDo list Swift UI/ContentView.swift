@@ -25,9 +25,9 @@ struct ContentView: View {
             }
                 
             .navigationBarTitle("Items", displayMode: .automatic)
-            .navigationBarItems(trailing: Button("Add") {
+            .navigationBarItems(trailing: VStack { Button("Add") {
                 self.presentingModal.toggle()
-            }
+                }}
             .sheet(isPresented: $presentingModal, onDismiss: {
                 self.presentingModal.toggle()
                 print("hi")
