@@ -24,7 +24,7 @@ struct Service {
         database = Firestore.firestore()
     }
     
-    func getAllDocuments() {
+    func getAllDocuments(_ onCompletion: @escaping (([ParentDocument]?) -> Void)) {
         
         database
             .collection(KEY_EXPANSES)
@@ -34,7 +34,10 @@ struct Service {
                     
                     var parentDocuments = [ParentDocument]()
                     
+                    let group = DispatchGroup()
+                    
                     for doc in documents {
+                        group.enter()
                         let documentId = doc.documentID
                         
                         var pd = ParentDocument()
@@ -46,10 +49,18 @@ struct Service {
                             if let list = items {
                                 pd.documents = list
                             }
+                            parentDocuments.append(pd)
+                            group.leave()
                         }
                         
-                        parentDocuments.append(pd)
                     }
+                    
+                    group.notify(queue: .main) {
+                        onCompletion(parentDocuments)
+                    }
+                }
+                else {
+                    onCompletion(nil)
                 }
         }
     }
