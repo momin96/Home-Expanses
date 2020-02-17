@@ -54,10 +54,11 @@ struct Service {
                    if let documents = querySnapshot?.documents {
                     for document in documents {
                         let docId = document.documentID
-                        let str = String(describing: document.data())
-                        var itemPrice = ItemPrice.performDecode(withJSONString: str)
-                        itemPrice?.documentId = docId
-                        print(itemPrice as Any)
+                        if let str = document.data().toJSONString() {
+                            var itemPrice = ItemPrice.performDecode(withJSONString: str)
+                            itemPrice?.documentId = docId
+                            print(itemPrice as Any)
+                        }
                     }
                    }
                }

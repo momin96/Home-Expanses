@@ -76,3 +76,14 @@ func createItemList() -> [ItemPrice] {
     return [i1, i2, i3, i4, i5, i6]
     
 }
+
+extension Dictionary {
+    func toJSONString() -> String? {
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) {
+            return String(data: jsonData, encoding: .utf8)
+        }
+        
+        return nil
+    }
+}
