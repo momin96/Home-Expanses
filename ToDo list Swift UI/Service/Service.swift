@@ -62,32 +62,5 @@ struct ParentDocument: Codable {
     
     var documents: [ItemPrice]
     
-    
-    
 }
 
-struct ItemPrice: Codable {
-    var item: String
-    var price: Int
-    var documentId: String
-    
-    static func decodeData(_ jsonString: String, documentId: String) -> ItemPrice? {
-        let jsonDecoder = JSONDecoder()
-        
-        if let jsonData = jsonString.data(using: .utf8) {
-            do {
-                let childDoc = try jsonDecoder.decode(ItemPrice.self, from: jsonData)
-                print(childDoc.item)
-                return childDoc
-            }
-            catch (let err){
-                print(err.localizedDescription)
-                return nil
-            }
-        }
-        else {
-            return nil
-        }
-    }
-    
-}

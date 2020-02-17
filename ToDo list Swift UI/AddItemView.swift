@@ -57,28 +57,3 @@ struct AddItemView: View {
 //    }
 //}
 //#endif
-
-struct ItemPrice: Hashable, Identifiable {
-    
-    var id = UUID()
-    var itemName: String
-    var itemPrice: Int
-    
-    init(_ item: String, price: Int) {
-        self.itemName = item
-        self.itemPrice = price
-    }
-}
-
-func createItemList() -> [ItemPrice] {
-    
-    let i1 = ItemPrice("Petrol", price: 100)
-    let i2 = ItemPrice("Kitchen", price: 286)
-    let i3 = ItemPrice("Dinner", price: 120)
-    let i4 = ItemPrice("Lunch", price: 200)
-    let i5 = ItemPrice("breakfast", price: 25)
-    let i6 = ItemPrice("Milk", price: 270)
-    
-    return [i1, i2, i3, i4, i5, i6]
-    
-}
