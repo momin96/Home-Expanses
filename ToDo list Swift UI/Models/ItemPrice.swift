@@ -8,11 +8,14 @@
 
 import Foundation
 
-struct ParentDocument: Codable {
+struct ParentDocument: Codable, Identifiable {
+    
+    var id = UUID()
+    
     var sumOfPrices: Double?
     var noOfEntries: Int?
-    
-    var documents: [ItemPrice]?
+    var documentId: String = "1581930990"
+    var documents: [ItemPrice] = [ItemPrice]()
     
     init() {
         
@@ -90,6 +93,18 @@ func createItemList() -> [ItemPrice] {
     
     return [i1, i2, i3, i4, i5, i6]
     
+}
+
+func getParentDoc() -> ParentDocument {
+    var pd = ParentDocument()
+    pd.documents = createItemList()
+    return pd
+}
+
+func getParentDocs() -> [ParentDocument] {
+    var pd = ParentDocument()
+    pd.documents = createItemList()
+    return [pd, pd]
 }
 
 extension Dictionary {
