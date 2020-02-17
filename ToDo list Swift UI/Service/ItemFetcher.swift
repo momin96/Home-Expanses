@@ -10,7 +10,8 @@ import Foundation
 
 class Itemfetcher: ObservableObject {
     @Published var daysList = [ParentDocument]()
-    
+//    var daysList: [ParentDocument] = getParentDocs()
+
     init() {
         getDaysList()
     }

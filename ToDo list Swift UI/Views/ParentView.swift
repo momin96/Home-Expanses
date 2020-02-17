@@ -7,20 +7,19 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ParentView: View {
     
-    let days: [ParentDocument] = getParentDocs()
-    
+    @ObservedObject var itemfetcher = Itemfetcher()
+        
     var body: some View {
-        List {
-            ForEach(days) { day in
-                
-                Section(header: Text(day.documentId)) {
-                    List (day.documents, id: \.itemName) { itemPrice in
-                        ItemCellView(itemPrice: itemPrice)
-                    }
-                }
+        VStack {
+            if itemfetcher.daysList.count == 0 {
+                Text("Loading...")
+            }
+            else {
+                DaysView(itemfetcher: itemfetcher)
             }
         }
     }
@@ -34,16 +33,21 @@ struct ParentView_Previews: PreviewProvider {
 }
 #endif
 
-
-//struct ParentListView: View {
-//
-//    let days: [ParentDocument] = getParentDocs()
-//
-//    var body: some View {
-//        VStack {
-//            List(days) { day in
-//                ParentView(day: day)
-//            }
-//        }
-//    }
-//}
+struct DaysView: View {
+    
+    var itemfetcher: Itemfetcher
+    
+    var body: some View {
+        VStack {
+            List(itemfetcher.daysList) { day in
+                VStack {
+                    Section(header: Text(day.documentId)) {
+                        ForEach(day.documents ) {itemPrice in
+                            ItemCellView(itemPrice: itemPrice)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

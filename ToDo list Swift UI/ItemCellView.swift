@@ -13,6 +13,7 @@ struct ItemCellView: View {
     var itemPrice: ItemPrice
     
     var body: some View {
+        
         HStack {
             Text(itemPrice.itemName)
                 .padding(.trailing)

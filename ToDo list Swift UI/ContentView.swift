@@ -17,8 +17,11 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            List(itemList) { item in
-                ItemCellView(itemPrice: item)
+//            List(itemList) { item in
+//                ItemCellView(itemPrice: item)
+//            }
+            VStack {
+                ParentView()
             }
                 
             .navigationBarTitle("Items", displayMode: .automatic)
