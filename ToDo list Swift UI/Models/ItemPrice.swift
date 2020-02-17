@@ -9,11 +9,26 @@
 import Foundation
 
 struct ParentDocument: Codable {
-    var sumOfPrices: Double
-    var noOfEntries: Int
+    var sumOfPrices: Double?
+    var noOfEntries: Int?
     
-    var documents: [ItemPrice]
+    var documents: [ItemPrice]?
     
+    init() {
+        
+    }
+    
+    static func decode(fromJSONString jsonString: String) -> ParentDocument? {
+        guard let jsonData = jsonString.data(using: .utf8) else { return nil }
+        do {
+            let parentDocument = try JSONDecoder().decode(ParentDocument.self, from: jsonData)
+            return parentDocument
+        }
+        catch (let err) {
+            print(err.localizedDescription)
+            return nil
+        }
+    }
 }
 
 struct ItemPrice: Codable, Hashable, Identifiable {

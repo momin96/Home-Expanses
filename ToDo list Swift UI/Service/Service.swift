@@ -14,7 +14,7 @@ let KEY_EXPANSES = "Expanses"
 let KEY_TODAY = "Today"
 
 struct Service {
-
+    
     static var shared = Service()
     
     private var database: Firestore
@@ -30,39 +30,58 @@ struct Service {
             .collection(KEY_EXPANSES)
             .getDocuments { (querySnapshot, err) in
                 
-            if let documents = querySnapshot?.documents {
-                for doc in documents {
-                    let documentId = doc.documentID
-                    let data = doc.data()
-                    print(data)
-                    print("-----")
+                if let documents = querySnapshot?.documents {
                     
-                    self.getDocument(documentId)
+                    var parentDocuments = [ParentDocument]()
                     
+                    for doc in documents {
+                        let documentId = doc.documentID
+                        
+                        var pd = ParentDocument()
+                        if let jsonString = doc.data().toJSONString() {
+                            pd = ParentDocument.decode(fromJSONString: jsonString) ?? ParentDocument()
+                        }
+                        
+                        self.getDocument(documentId) { (items) in
+                            if let list = items {
+                                pd.documents = list
+                            }
+                        }
+                        
+                        parentDocuments.append(pd)
+                    }
                 }
-            }
         }
     }
     
-    func getDocument(_ documentId: String) {
+    func getDocument(_ documentId: String,
+                     onCompletion: @escaping (([ItemPrice]?) -> Void)) {
         
-               database
-                .collection(KEY_EXPANSES)
-                .document(documentId)
-                .collection(KEY_TODAY)
-                .getDocuments { (querySnapshot, err) in
-                   if let documents = querySnapshot?.documents {
+        database
+            .collection(KEY_EXPANSES)
+            .document(documentId)
+            .collection(KEY_TODAY)
+            .getDocuments { (querySnapshot, err) in
+                
+                if let documents = querySnapshot?.documents {
+                    
+                    var items = [ItemPrice]()
                     for document in documents {
                         let docId = document.documentID
                         if let str = document.data().toJSONString() {
-                            var itemPrice = ItemPrice.performDecode(withJSONString: str)
-                            itemPrice?.documentId = docId
-                            print(itemPrice as Any)
+                            if var itemPrice = ItemPrice.performDecode(withJSONString: str) {
+                                itemPrice.documentId = docId
+                                items.append(itemPrice)
+                            }
                         }
                     }
-                   }
-               }
-           }
+                    onCompletion(items)
+                }
+                else {
+                    onCompletion(nil)
+                }
+        }
+    }
     
 }
 
