@@ -8,10 +8,20 @@
 
 import Foundation
 
+struct ParentDocument: Codable {
+    var sumOfPrices: Double
+    var noOfEntries: Int
+    
+    var documents: [ItemPrice]
+    
+}
 
 struct ItemPrice: Codable, Hashable, Identifiable {
     
     var id = UUID()
+    var documentId : String?
+    
+    // Codable properties
     var itemName: String
     var itemPrice: Int
     

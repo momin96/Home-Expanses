@@ -11,6 +11,7 @@ import Firebase
 import FirebaseFirestore
 
 let KEY_EXPANSES = "Expanses"
+let KEY_TODAY = "Today"
 
 struct Service {
 
@@ -24,9 +25,11 @@ struct Service {
     }
     
     func getAllDocuments() {
-        database.collection(KEY_EXPANSES).getDocuments { (querySnapshot, err) in
-//            print("querySnapshot  \(querySnapshot)")
-//            print("err  \(err)")
+        
+        database
+            .collection(KEY_EXPANSES)
+            .getDocuments { (querySnapshot, err) in
+                
             if let documents = querySnapshot?.documents {
                 for doc in documents {
                     let documentId = doc.documentID
@@ -42,25 +45,23 @@ struct Service {
     }
     
     func getDocument(_ documentId: String) {
-               database.collection(KEY_EXPANSES).document(documentId).collection("Today").getDocuments { (querySnapshot, err) in
+        
+               database
+                .collection(KEY_EXPANSES)
+                .document(documentId)
+                .collection(KEY_TODAY)
+                .getDocuments { (querySnapshot, err) in
                    if let documents = querySnapshot?.documents {
-                       for document in documents {
-                           let docId = document.documentID
-                           let str = String(describing: document.data())
-                           let itemPrice = ItemPrice.decodeData(str, documentId: docId)
-                           print(itemPrice as Any)
-                       }
+                    for document in documents {
+                        let docId = document.documentID
+                        let str = String(describing: document.data())
+                        var itemPrice = ItemPrice.performDecode(withJSONString: str)
+                        itemPrice?.documentId = docId
+                        print(itemPrice as Any)
+                    }
                    }
                }
            }
-    
-}
-
-struct ParentDocument: Codable {
-    var sumOfPrices: Double
-    var noOfEntries: Int
-    
-    var documents: [ItemPrice]
     
 }
 
