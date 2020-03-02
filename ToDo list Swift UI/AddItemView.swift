@@ -15,8 +15,8 @@ struct AddItemView: View {
     @Binding var dismissModal: Bool
     @Binding var itemList: [ItemPrice]
     
-    @State private var itemField: String = ""
-      @State private var priceField: String = ""
+    @State private var itemField: String = "Sapota"
+    @State private var priceField: String = "36"
     
     var body: some View {
         NavigationView {

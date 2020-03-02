@@ -17,12 +17,12 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-//            List(itemList) { item in
-//                ItemCellView(itemPrice: item)
-//            }
-            VStack {
-                ParentView()
+            List(itemList) { item in
+                ItemCellView(itemPrice: item)
             }
+//            VStack {
+//                ParentView()
+//            }
                 
             .navigationBarTitle("Items", displayMode: .automatic)
             .navigationBarItems(trailing: VStack { Button("Add") {
