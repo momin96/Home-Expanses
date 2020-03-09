@@ -10,9 +10,9 @@ import SwiftUI
 
 struct AddItemView: View {
     
-//    @Environment(\.presentationMode) var dismissModal
+    @Environment(\.presentationMode) var presentationMode
     
-    @Binding var dismissModal: Bool
+    //    @Binding var dismissModal: Bool
     @Binding var itemList: [ItemPrice]
     
     @State private var itemField: String = "Sapota"
@@ -27,25 +27,32 @@ struct AddItemView: View {
                         .padding(.vertical)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                     Spacer()
-
+                    
                     TextField(" Enter Price", text: $priceField)
                         .padding(.vertical)
                         .keyboardType(.numberPad)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                     Spacer()
+                    Button("Add") {
+                        //                        let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
+                        //                        self.itemList.append(l)
+                        //                        self.dismissModal = false
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    }
                 }
                 .padding(.horizontal)
             }
             .navigationBarTitle("Add Item", displayMode: .inline)
-            .navigationBarItems(trailing: Button("ADD") {
-                print("Add item button tapped")
-                let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
-                self.itemList.append(l)
-                self.dismissModal = false
-//                                self.dismissModal.wrappedValue.dismiss()
-            }
-            .frame(width: 50.0, height: 30.0))
-                
+            //            .navigationBarItems(trailing: Button("ADD") {
+            //                print("Add item button tapped")
+            //                let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
+            //                self.itemList.append(l)
+            //                self.dismissModal = false
+            ////                                self.dismissModal.wrappedValue.dismiss()
+            //            }
+            //.frame(width: 50.0, height: 30.0))
+            
         }
     }
 }

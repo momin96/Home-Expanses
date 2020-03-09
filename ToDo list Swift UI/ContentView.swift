@@ -24,16 +24,22 @@ struct ContentView: View {
 //                ParentView()
 //            }
                 
-            .navigationBarTitle("Items", displayMode: .automatic)
+            .navigationBarTitle("Items", displayMode: .inline)
             .navigationBarItems(trailing: VStack { Button("Add") {
                 self.presentingModal.toggle()
                 }}
-            .sheet(isPresented: $presentingModal, onDismiss: {
-                self.presentingModal.toggle()
-                print("hi")
-            }, content: {
-                return AddItemView(dismissModal: self.$presentingModal, itemList: self.$itemList)
-            }))
+                .sheet(isPresented: self.$presentingModal, content: {
+                     AddItemView(itemList: self.$itemList)
+                })
+                
+                
+//                .sheet(isPresented: self.$presentingModal, onDismiss: {
+//                //self.presentingModal.toggle()
+//
+//            }, content: {
+//                return AddItemView(itemList: self.$itemList)
+//            })
+            )
         }
     }
 }
