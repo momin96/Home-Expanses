@@ -15,10 +15,10 @@ class LoginViewModel: ObservableObject {
 
 struct LoginView: View {
     
-    @ObservedObject var viewModel = LoginView()
+    @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AuthControlView()
     }
 }
 

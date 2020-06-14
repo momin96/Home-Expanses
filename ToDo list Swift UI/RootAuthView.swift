@@ -29,7 +29,7 @@ struct RootAuthView: View {
             if viewModel.isUserLoggedIn {
                 ContentView()
             } else {
-                EmptyView()
+                LoginView()
             }
         }
     }
@@ -40,5 +40,3 @@ struct RootAuthView_Previews: PreviewProvider {
         RootAuthView()
     }
 }
-
-
