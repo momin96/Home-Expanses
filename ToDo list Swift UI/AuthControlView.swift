@@ -8,6 +8,7 @@
 
 import SwiftUI
 import GoogleSignIn
+import FirebaseAuth
 
 struct AuthControlView: UIViewRepresentable {
     
@@ -58,6 +59,15 @@ struct AuthControlView: UIViewRepresentable {
                 control.showAuthAlert.wrappedValue = true
                 return
             }
+            
+            guard let authentication = user.authentication else {
+                
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            AuthService(authType: .Google, authMode: .Login).authenticate(withCredentail: credential)
+            
         }
         
         func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -65,4 +75,3 @@ struct AuthControlView: UIViewRepresentable {
         }
     }
 }
-

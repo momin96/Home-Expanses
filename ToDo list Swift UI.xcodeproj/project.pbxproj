@@ -25,6 +25,7 @@
 		8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDA2495DF5100C03504 /* RootAuthView.swift */; };
 		8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDC2495E0B600C03504 /* LoginView.swift */; };
 		8BF67DE02496006E00C03504 /* AuthControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDF2496006E00C03504 /* AuthControlView.swift */; };
+		8BF67DE22496296100C03504 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DE12496296100C03504 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		8BF67DDA2495DF5100C03504 /* RootAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAuthView.swift; sourceTree = "<group>"; };
 		8BF67DDC2495E0B600C03504 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8BF67DDF2496006E00C03504 /* AuthControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControlView.swift; sourceTree = "<group>"; };
+		8BF67DE12496296100C03504 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo_list_Swift_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4402003EE9A73B2F7035CC5 /* Pods-ToDo list Swift UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.debug.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 		0E4AFA4C23FA68EF00087DB6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8BF67DE12496296100C03504 /* AuthService.swift */,
 				0E4AFA4D23FA68EF00087DB6 /* Service.swift */,
 				0ED136D223FA8F6300D3379B /* ItemFetcher.swift */,
 			);
@@ -295,6 +298,7 @@
 				0ED136D323FA8F6300D3379B /* ItemFetcher.swift in Sources */,
 				0E4AFA4B23FA68BE00087DB6 /* Item.swift in Sources */,
 				8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */,
+				8BF67DE22496296100C03504 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
