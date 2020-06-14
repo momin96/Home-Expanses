@@ -32,23 +32,38 @@ class AuthService{
         self.authMode = authMode
     }
     
-    func authenticate(withGoogleUser user: GIDGoogleUser) {
+    func authenticate(withGoogleUser user: GIDGoogleUser, onCompletion: ((Result<AuthCredential, Error>) -> Void)? = nil) {
         
-    }
-    
-    func authenticate(withCredentail credential: AuthCredential) {
-        
-        switch self.authType {
-        case .Google:
-            authenticateGoogle(withCredentail: credential)
-        case .Facebook:
-            authenticateFacebook(withCredentail: credential)
-        case .Phone:
-            authenticatePhone(withCredentail: credential)
-        case .Apple:
-            authenticateApple(withCredentail: credential)
+        if self.authMode == .Login {
+            guard let authentication = user.authentication else {
+                if let completion = onCompletion { completion(.failure(AppError.CredentailError)) }
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            
+            if let completion = onCompletion {
+                completion(.success(credential))
+            }
+            
+        } else if self.authMode == .logout {
+            GIDSignIn.sharedInstance().signOut()
         }
     }
+    
+//    func authenticate(withCredentail credential: AuthCredential) {
+//
+//        switch self.authType {
+//        case .Google:
+//            authenticateGoogle(withCredentail: credential)
+//        case .Facebook:
+//            authenticateFacebook(withCredentail: credential)
+//        case .Phone:
+//            authenticatePhone(withCredentail: credential)
+//        case .Apple:
+//            authenticateApple(withCredentail: credential)
+//        }
+//    }
     
     private func authenticateGoogle(withCredentail credential: AuthCredential) {
         if self.authMode == .Login {
@@ -66,4 +81,17 @@ class AuthService{
     private func authenticatePhone(withCredentail credential: AuthCredential) { }
     
     private func authenticateApple(withCredentail credential: AuthCredential) { }
+}
+
+enum AppError: Error {
+    case CredentailError
+}
+
+extension AppError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .CredentailError:
+            return "Credentails Error"
+        }
+    }
 }

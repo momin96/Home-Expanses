@@ -60,14 +60,17 @@ struct AuthControlView: UIViewRepresentable {
                 return
             }
             
-            guard let authentication = user.authentication else {
-                
-                return
+            
+            AuthService(authType: .Google, authMode: .Login).authenticate(withGoogleUser: user) { [weak self] (result) in
+                switch result {
+                case .failure(let error):
+                    self?.control.authError.wrappedValue = error
+                    self?.control.showAuthAlert.wrappedValue = true
+                    
+                case .success(let credential):
+                    print(credential)
+                }
             }
-            
-            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            AuthService(authType: .Google, authMode: .Login).authenticate(withCredentail: credential)
-            
         }
         
         func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
