@@ -8,15 +8,28 @@
 
 import SwiftUI
 import Combine
+import GoogleSignIn
 
 struct AppConfig {
     static var userLoggedInKey = "userLoggedInKey"
 }
 
 class RootAuthViewModel: ObservableObject {
+    
     var isUserLoggedIn: Bool {
-        let loggedIn = UserDefaults.standard.bool(forKey: AppConfig.userLoggedInKey)
-        return loggedIn
+                
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
+            return true
+        }
+        
+        if GIDSignIn.sharedInstance()?.hasPreviousSignIn() ?? false {
+            GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        }
+        
+        return GIDSignIn.sharedInstance()?.currentUser != nil
+        
+//        let loggedIn = UserDefaults.standard.bool(forKey: AppConfig.userLoggedInKey)
+//        return loggedIn
     }
 }
 
