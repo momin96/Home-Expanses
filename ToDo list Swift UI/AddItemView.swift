@@ -7,10 +7,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AddItemView: View {
     
 //    @Environment(\.presentationMode) var dismissModal
+    
+    @ObservedObject var viewModel = AddItemViewModel()
     
     @Binding var dismissModal: Bool
     @Binding var itemList: [ItemPrice]
