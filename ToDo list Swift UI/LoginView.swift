@@ -17,8 +17,20 @@ struct LoginView: View {
     
     @ObservedObject var viewModel = LoginViewModel()
     
+    @State private var showAuthAlert: Bool = false
+    @State private var authError: Error?
+    
     var body: some View {
-        AuthControlView()
+        VStack{
+            AuthControlView(showAuthAlert: $showAuthAlert, authError: $authError)
+        }.alert(isPresented: $showAuthAlert) {
+            
+            Alert(title: Text("Login Failed"),
+                  message: Text("\(self.authError?.localizedDescription ?? "Unknown Reason")"),
+                  dismissButton: .default(Text("OK"), action: {
+                    self.showAuthAlert = false
+                  }))
+        }
     }
 }
 
