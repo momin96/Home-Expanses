@@ -8,31 +8,31 @@
 
 import Foundation
 
-struct ParentDocument: Codable, Identifiable {
-    
-    var id = UUID()
-    
-    var sumOfPrices: Double?
-    var noOfEntries: Int?
-    var documentId: String = "1581930990"
-    var documents: [Item] = [Item]()
-    
-    init() {
-        
-    }
-    
-    static func decode(fromJSONString jsonString: String) -> ParentDocument? {
-        guard let jsonData = jsonString.data(using: .utf8) else { return nil }
-        do {
-            let parentDocument = try JSONDecoder().decode(ParentDocument.self, from: jsonData)
-            return parentDocument
-        }
-        catch (let err) {
-            print(err.localizedDescription)
-            return nil
-        }
-    }
-}
+//struct ParentDocument: Codable, Identifiable {
+//    
+//    var id = UUID()
+//    
+//    var sumOfPrices: Double?
+//    var noOfEntries: Int?
+//    var documentId: String = "1581930990"
+//    var documents: [Item] = [Item]()
+//    
+//    init() {
+//        
+//    }
+//    
+//    static func decode(fromJSONString jsonString: String) -> ParentDocument? {
+//        guard let jsonData = jsonString.data(using: .utf8) else { return nil }
+//        do {
+//            let parentDocument = try JSONDecoder().decode(ParentDocument.self, from: jsonData)
+//            return parentDocument
+//        }
+//        catch (let err) {
+//            print(err.localizedDescription)
+//            return nil
+//        }
+//    }
+//}
 
 class Item: Codable, ObservableObject {
 
@@ -96,17 +96,17 @@ func createItemList() -> [Item] {
     
 }
 
-func getParentDoc() -> ParentDocument {
-    var pd = ParentDocument()
-    pd.documents = createItemList()
-    return pd
-}
-
-func getParentDocs() -> [ParentDocument] {
-    var pd = ParentDocument()
-    pd.documents = createItemList()
-    return [pd, pd]
-}
+//func getParentDoc() -> ParentDocument {
+//    var pd = ParentDocument()
+//    pd.documents = createItemList()
+//    return pd
+//}
+//
+//func getParentDocs() -> [ParentDocument] {
+//    var pd = ParentDocument()
+//    pd.documents = createItemList()
+//    return [pd, pd]
+//}
 
 extension Dictionary {
     func toJSONString() -> String? {
