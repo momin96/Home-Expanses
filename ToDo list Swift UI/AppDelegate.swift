@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        let _ = Service.shared.getAllDocuments { (docs) in
-            print(docs)
-        }
+//        let _ = Service.shared.getAllDocuments { (docs) in
+//            print(docs)
+//        }
         return true
     }
 

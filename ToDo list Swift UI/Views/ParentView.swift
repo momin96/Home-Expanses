@@ -15,12 +15,13 @@ struct ParentView: View {
         
     var body: some View {
         VStack {
-            if itemfetcher.daysList.count == 0 {
-                Text("Loading...")
-            }
-            else {
-                DaysView(itemfetcher: itemfetcher)
-            }
+//            if itemfetcher.daysList.count == 0 {
+//                Text("Loading...")
+//            }
+//            else {
+//                DaysView(itemfetcher: itemfetcher)
+//            }
+            Text("ParentView")
         }
     }
 }
@@ -39,7 +40,7 @@ struct DaysView: View {
     
     var body: some View {
         VStack {
-            List(itemfetcher.daysList) { day in
+            List(0..<10) { day in
                 VStack {
 //                    Section(header: Text(day.documentId)) {
 //                        ForEach(day.documents ) {itemPrice in
