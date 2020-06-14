@@ -21,11 +21,18 @@ struct AuthControlView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> GIDSignInButton {
+        
         let googleSigninButton = GIDSignInButton()
         googleSigninButton.style = .wide
         GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
         GIDSignIn.sharedInstance()?.delegate = context.coordinator
         
+        // DispatchQueue is required so that Button's frame gets update on next runloop
+//        DispatchQueue.main.async {
+//            let bounds = UIScreen.main.bounds
+//            let originY = bounds.height.half - googleSigninButton.frame.height.half
+//            googleSigninButton.frame.origin = CGPoint(x: 0, y: originY)
+//        }
         
         return googleSigninButton
     }
@@ -36,12 +43,6 @@ struct AuthControlView: UIViewRepresentable {
     
     func updateUIView(_ uiView: GIDSignInButton, context: UIViewRepresentableContext<AuthControlView>) {
         
-        // DispatchQueue is required so that Button's frame gets update on next runloop
-        DispatchQueue.main.async {
-            let bounds = UIScreen.main.bounds
-            let originY = bounds.height - uiView.frame.height
-            uiView.frame.origin = CGPoint(x: 0, y: originY)
-        }
     }
     
     class Coordinator: NSObject, GIDSignInDelegate {
@@ -60,7 +61,6 @@ struct AuthControlView: UIViewRepresentable {
                 return
             }
             
-            
             AuthService(authType: .Google, authMode: .Login).authenticate(withGoogleUser: user) { [weak self] (result) in
                 switch result {
                 case .failure(let error):
@@ -77,4 +77,8 @@ struct AuthControlView: UIViewRepresentable {
             print(#function)
         }
     }
+}
+
+extension CGFloat {
+    var half: CGFloat { self / 2.0 }
 }

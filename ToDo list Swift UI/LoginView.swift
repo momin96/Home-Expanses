@@ -23,7 +23,10 @@ struct LoginView: View {
     var body: some View {
         VStack{
             AuthControlView(showAuthAlert: $showAuthAlert, authError: $authError)
-        }.alert(isPresented: $showAuthAlert) {
+                .frame(width: 250, height: 40)
+            
+        }
+        .alert(isPresented: $showAuthAlert) {
             
             Alert(title: Text("Login Failed"),
                   message: Text("\(self.authError?.localizedDescription ?? "Unknown Reason")"),
