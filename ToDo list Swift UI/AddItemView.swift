@@ -11,11 +11,11 @@ import Combine
 
 struct AddItemView: View {
     
-//    @Environment(\.presentationMode) var dismissModal
+    //    @Environment(\.presentationMode) var dismissModal
     
     @ObservedObject var viewModel: AddItemViewModel
     var dismissModel: Binding<Bool>
-
+    
     init(viewModel: AddItemViewModel, dismissModel: Binding<Bool>) {
         self.viewModel = viewModel
         self.dismissModel = dismissModel
@@ -25,39 +25,51 @@ struct AddItemView: View {
         NavigationView {
             ScrollView {
                 VStack {
+                    
                     Spacer()
+                    
                     TextField(" Enter item", text: $viewModel.itemField)
-                        .padding(.vertical)
-                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
                     Spacer()
-
+                    
                     TextField(" Enter Price", text: $viewModel.priceField)
-                        .padding(.vertical)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
-                        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
+                        .padding(.vertical)
+                    
                     Spacer()
                 }
                 .padding(.horizontal)
             }
             .navigationBarTitle("Add Item", displayMode: .inline)
-            .navigationBarItems(trailing: Button("ADD") {
-                print("Add item button tapped")
-                
-                self.viewModel.addItem()
-        
-//                self.dismissModal = false
-//                                self.dismissModal.wrappedValue.dismiss()
-            }
-            .frame(width: 50.0, height: 30.0))
-                
+            .navigationBarItems(
+                leading: HStack{
+                    
+                    Button(action: {
+                        self.dismissModel.wrappedValue = false
+                    }) {
+                        Image(systemName: "multiply").imageScale(.large)
+                    }
+                },
+                trailing: HStack{
+                    Button(action: {
+                        self.viewModel.addItem()
+                    }) {
+                        Image(systemName: "plus").imageScale(.large)
+                    }
+            })
         }
     }
 }
 
-//#if DEBUG
-//struct AddItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddItemView(presentAsModal: )
-//    }
-//}
-//#endif
+#if DEBUG
+struct AddItemView_Previews: PreviewProvider {
+    
+    static var viewModel = AddItemViewModel(items: .constant([]))
+    
+    static var previews: some View {
+        AddItemView(viewModel: viewModel, dismissModel: .constant(false))
+    }
+}
+#endif

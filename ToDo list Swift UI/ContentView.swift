@@ -29,6 +29,7 @@ struct ContentView: View {
             }
             .navigationBarTitle("Items", displayMode: .automatic)
             .navigationBarItems(trailing: Button(action: {
+                self.showAddItemModel.toggle()
             }){
                 Image(systemName: "plus.circle").imageScale(.large)
             })
