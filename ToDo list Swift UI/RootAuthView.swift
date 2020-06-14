@@ -17,7 +17,7 @@ struct AppConfig {
 class RootAuthViewModel: ObservableObject {
     
     var isUserLoggedIn: Bool {
-                
+        
         if GIDSignIn.sharedInstance()?.currentUser != nil {
             return true
         }
@@ -28,8 +28,8 @@ class RootAuthViewModel: ObservableObject {
         
         return GIDSignIn.sharedInstance()?.currentUser != nil
         
-//        let loggedIn = UserDefaults.standard.bool(forKey: AppConfig.userLoggedInKey)
-//        return loggedIn
+        //        let loggedIn = UserDefaults.standard.bool(forKey: AppConfig.userLoggedInKey)
+        //        return loggedIn
     }
 }
 
@@ -40,7 +40,7 @@ struct RootAuthView: View {
     var body: some View {
         VStack {
             if viewModel.isUserLoggedIn {
-                ContentView()
+                HomeView()
             } else {
                 LoginView()
             }
@@ -51,5 +51,24 @@ struct RootAuthView: View {
 struct RootAuthView_Previews: PreviewProvider {
     static var previews: some View {
         RootAuthView()
+    }
+}
+
+struct HomeView: View {
+    
+    @State private var selectedTab = 0
+    
+    var body: some View {
+        TabView(selection: $selectedTab){
+            ContentView()
+                .tabItem {
+                    Text("List")
+            }.tag(0)
+            
+            ProfileView()
+                .tabItem {
+                    Text("Profile")
+            }.tag(1)
+        }
     }
 }

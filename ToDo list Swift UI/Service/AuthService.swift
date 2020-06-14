@@ -52,6 +52,10 @@ class AuthService{
         return nil
     }
     
+    func performGoogleLogout() {
+        GIDSignIn.sharedInstance().signOut()
+    }
+    
     // Old way of doing.
     func authenticate(withGoogleUser user: GIDGoogleUser, onCompletion: ((Result<AuthCredential, Error>) -> Void)? = nil) {
         
