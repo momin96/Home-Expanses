@@ -15,7 +15,7 @@ struct ParentDocument: Codable, Identifiable {
     var sumOfPrices: Double?
     var noOfEntries: Int?
     var documentId: String = "1581930990"
-    var documents: [ItemPrice] = [ItemPrice]()
+    var documents: [Item] = [Item]()
     
     init() {
         
@@ -34,7 +34,7 @@ struct ParentDocument: Codable, Identifiable {
     }
 }
 
-class ItemPrice: Codable, ObservableObject {
+class Item: Codable, ObservableObject {
 
     
     var id = UUID()
@@ -54,12 +54,12 @@ class ItemPrice: Codable, ObservableObject {
         self.itemPrice = price
     }
     
-    static func performDecode(withJSONString jsonString: String) -> ItemPrice? {
+    static func performDecode(withJSONString jsonString: String) -> Item? {
         
         guard let jsonData = jsonString.data(using: .utf8) else { return nil }
                 
         do {
-            let childDoc = try JSONDecoder().decode(ItemPrice.self, from: jsonData)
+            let childDoc = try JSONDecoder().decode(Item.self, from: jsonData)
             return childDoc
         }
         catch (let decodeErr){
@@ -68,7 +68,7 @@ class ItemPrice: Codable, ObservableObject {
         }
     }
     
-    static func performEncode(withItemPrice itemPrice: ItemPrice) -> String? {
+    static func performEncode(withItemPrice itemPrice: Item) -> String? {
         
         do {
             let jsonData = try JSONEncoder().encode(itemPrice)
@@ -83,14 +83,14 @@ class ItemPrice: Codable, ObservableObject {
     
 }
 
-func createItemList() -> [ItemPrice] {
+func createItemList() -> [Item] {
     
-    let i1 = ItemPrice("Petrol", price: 100)
-    let i2 = ItemPrice("Kitchen", price: 286)
-    let i3 = ItemPrice("Dinner", price: 120)
-    let i4 = ItemPrice("Lunch", price: 200)
-    let i5 = ItemPrice("breakfast", price: 25)
-    let i6 = ItemPrice("Milk", price: 270)
+    let i1 = Item("Petrol", price: 100)
+    let i2 = Item("Kitchen", price: 286)
+    let i3 = Item("Dinner", price: 120)
+    let i4 = Item("Lunch", price: 200)
+    let i5 = Item("breakfast", price: 25)
+    let i6 = Item("Milk", price: 270)
     
     return [i1, i2, i3, i4, i5, i6]
     

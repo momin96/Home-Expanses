@@ -66,7 +66,7 @@ struct Service {
     }
     
     func getDocument(_ documentId: String,
-                     onCompletion: @escaping (([ItemPrice]?) -> Void)) {
+                     onCompletion: @escaping (([Item]?) -> Void)) {
         
         database
             .collection(KEY_EXPANSES)
@@ -76,11 +76,11 @@ struct Service {
                 
                 if let documents = querySnapshot?.documents {
                     
-                    var items = [ItemPrice]()
+                    var items = [Item]()
                     for document in documents {
                         let docId = document.documentID
                         if let str = document.data().toJSONString() {
-                            if var itemPrice = ItemPrice.performDecode(withJSONString: str) {
+                            if var itemPrice = Item.performDecode(withJSONString: str) {
                                 itemPrice.documentId = docId
                                 items.append(itemPrice)
                             }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ItemCellView: View {
     
-    var itemPrice: ItemPrice
+    var itemPrice: Item
     
     var body: some View {
         
@@ -30,7 +30,7 @@ struct ItemCellView: View {
 #if DEBUG
 struct ItemCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCellView(itemPrice: ItemPrice("Petrol", price: 100))
+        ItemCellView(itemPrice: Item("Petrol", price: 100))
             .previewLayout(.fixed(width: 200, height: 70))
     }
 }
