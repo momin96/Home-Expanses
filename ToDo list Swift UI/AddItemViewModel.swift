@@ -14,10 +14,15 @@ class AddItemViewModel: ObservableObject {
     @Published var itemField: String = ""
     @Published var priceField: String = ""
     
+    var items: Binding<[Item]>
+    
+    init(items: Binding<[Item]>) {
+        self.items = items
+    }
     
     func addItem() {
         
-        let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
+        let l = Item(self.itemField, price: Int(self.priceField) ?? 0)
 //        self.itemList.append(l)
     }
     

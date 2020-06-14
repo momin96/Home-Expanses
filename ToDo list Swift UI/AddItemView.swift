@@ -13,11 +13,14 @@ struct AddItemView: View {
     
 //    @Environment(\.presentationMode) var dismissModal
     
-    @ObservedObject var viewModel = AddItemViewModel()
-    
-    @Binding var dismissModal: Bool
-    @Binding var itemList: [ItemPrice]
+    @ObservedObject var viewModel: AddItemViewModel
+    var dismissModel: Binding<Bool>
 
+    init(viewModel: AddItemViewModel, dismissModel: Binding<Bool>) {
+        self.viewModel = viewModel
+        self.dismissModel = dismissModel
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {

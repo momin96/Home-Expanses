@@ -10,30 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var presentingModal: Bool = false
+    @State private var showAddItemModel: Bool = false
     
     @State private var itemList = createItemList()
     
     var body: some View {
         
         NavigationView {
-//            List(itemList) { item in
-//                ItemCellView(itemPrice: item)
-//            }
             VStack {
-                ParentView()
-            }
+                //            List(itemList) { item in
+                //                ItemCellView(itemPrice: item)
+                //            }
+                VStack {
+                    ParentView()
+                }
                 
+                
+            }
             .navigationBarTitle("Items", displayMode: .automatic)
-            .navigationBarItems(trailing: VStack { Button("Add") {
-                self.presentingModal.toggle()
-                }}
-            .sheet(isPresented: $presentingModal, onDismiss: {
-                self.presentingModal.toggle()
-                print("hi")
-            }, content: {
-                return AddItemView(dismissModal: self.$presentingModal, itemList: self.$itemList)
-            }))
+            .navigationBarItems(trailing: Button(action: {
+            }){
+                Image(systemName: "plus.circle").imageScale(.large)
+            })
+                .sheet(isPresented: $showAddItemModel) {
+                    AddItemView(viewModel: AddItemViewModel(items: self.$itemList), dismissModel: self.$showAddItemModel)
+            }
         }
     }
 }
