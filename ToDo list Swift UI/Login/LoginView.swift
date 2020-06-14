@@ -22,7 +22,7 @@ struct LoginView: View {
     
     var body: some View {
         VStack{
-            AuthControlView(showAuthAlert: $showAuthAlert, authError: $authError)
+            GoogleSignInButton(showAuthAlert: $showAuthAlert, authError: $authError)
                 .frame(width: 250, height: 40)
             
         }

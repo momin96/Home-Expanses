@@ -24,7 +24,7 @@
 		8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DD82495C31400C03504 /* AddItemViewModel.swift */; };
 		8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDA2495DF5100C03504 /* RootAuthView.swift */; };
 		8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDC2495E0B600C03504 /* LoginView.swift */; };
-		8BF67DE02496006E00C03504 /* AuthControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDF2496006E00C03504 /* AuthControlView.swift */; };
+		8BF67DE02496006E00C03504 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDF2496006E00C03504 /* GoogleSignInButton.swift */; };
 		8BF67DE22496296100C03504 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DE12496296100C03504 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		8BF67DD82495C31400C03504 /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		8BF67DDA2495DF5100C03504 /* RootAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAuthView.swift; sourceTree = "<group>"; };
 		8BF67DDC2495E0B600C03504 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		8BF67DDF2496006E00C03504 /* AuthControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControlView.swift; sourceTree = "<group>"; };
+		8BF67DDF2496006E00C03504 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		8BF67DE12496296100C03504 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo_list_Swift_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4402003EE9A73B2F7035CC5 /* Pods-ToDo list Swift UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.debug.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,13 +87,12 @@
 		0E01DF3723EAC39A008E9D5A /* ToDo list Swift UI */ = {
 			isa = PBXGroup;
 			children = (
-				8BF67DDA2495DF5100C03504 /* RootAuthView.swift */,
-				8BF67DDF2496006E00C03504 /* AuthControlView.swift */,
-				8BF67DDC2495E0B600C03504 /* LoginView.swift */,
-				0E01DF4C23EAD577008E9D5A /* AddItemView.swift */,
-				8BF67DD82495C31400C03504 /* AddItemViewModel.swift */,
 				0E01DF3823EAC39A008E9D5A /* AppDelegate.swift */,
 				0E01DF3A23EAC39A008E9D5A /* SceneDelegate.swift */,
+				8BF67DDA2495DF5100C03504 /* RootAuthView.swift */,
+				8BF67DE324963F0800C03504 /* Login */,
+				0E01DF4C23EAD577008E9D5A /* AddItemView.swift */,
+				8BF67DD82495C31400C03504 /* AddItemViewModel.swift */,
 				0E01DF3C23EAC39A008E9D5A /* ContentView.swift */,
 				0E4AFA4F23FA7D8E00087DB6 /* ParentView.swift */,
 				0E01DF4E23EAD81E008E9D5A /* ItemCellView.swift */,
@@ -141,6 +140,15 @@
 				712225F056E450B2F63C9768 /* Pods-ToDo list Swift UI.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8BF67DE324963F0800C03504 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8BF67DDC2495E0B600C03504 /* LoginView.swift */,
+				8BF67DDF2496006E00C03504 /* GoogleSignInButton.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		97CB885FD071B821EF78D1FE /* Frameworks */ = {
@@ -292,7 +300,7 @@
 				0E01DF3B23EAC39A008E9D5A /* SceneDelegate.swift in Sources */,
 				8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */,
 				8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */,
-				8BF67DE02496006E00C03504 /* AuthControlView.swift in Sources */,
+				8BF67DE02496006E00C03504 /* GoogleSignInButton.swift in Sources */,
 				0E01DF3D23EAC39A008E9D5A /* ContentView.swift in Sources */,
 				0E01DF4D23EAD577008E9D5A /* AddItemView.swift in Sources */,
 				0ED136D323FA8F6300D3379B /* ItemFetcher.swift in Sources */,

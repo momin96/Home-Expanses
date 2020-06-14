@@ -10,7 +10,7 @@ import SwiftUI
 import GoogleSignIn
 import FirebaseAuth
 
-struct AuthControlView: UIViewRepresentable {
+struct GoogleSignInButton: UIViewRepresentable {
     
     var showAuthAlert: Binding<Bool>
     var authError: Binding<Error?>
@@ -41,15 +41,15 @@ struct AuthControlView: UIViewRepresentable {
         Coordinator(self)
     }
     
-    func updateUIView(_ uiView: GIDSignInButton, context: UIViewRepresentableContext<AuthControlView>) {
+    func updateUIView(_ uiView: GIDSignInButton, context: UIViewRepresentableContext<GoogleSignInButton>) {
         
     }
     
     class Coordinator: NSObject, GIDSignInDelegate {
         
-        var control:AuthControlView
+        var control:GoogleSignInButton
         
-        init(_ control:AuthControlView) {
+        init(_ control:GoogleSignInButton) {
             self.control = control
         }
         
