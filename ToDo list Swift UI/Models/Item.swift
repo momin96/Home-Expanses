@@ -34,7 +34,7 @@ import Foundation
 //    }
 //}
 
-class Item: Codable, ObservableObject {
+class Item: Codable, ObservableObject, Identifiable {
 
     
     var id = UUID()

@@ -12,7 +12,7 @@ import Combine
 struct ParentView: View {
     
     @ObservedObject var itemfetcher = Itemfetcher()
-        
+    @Binding var items: [Item]
     var body: some View {
         VStack {
 //            if itemfetcher.daysList.count == 0 {
@@ -21,15 +21,21 @@ struct ParentView: View {
 //            else {
 //                DaysView(itemfetcher: itemfetcher)
 //            }
-            Text("ParentView")
+            List(items) { item in
+              HStack {
+                Text(item.itemName)
+                Text("\(item.itemPrice)")
+              }
+            }
         }
     }
 }
 
 #if DEBUG
 struct ParentView_Previews: PreviewProvider {
+    @State static var items = createItemList()
     static var previews: some View {
-        ParentView()
+      return ParentView(items: $items)
     }
 }
 #endif

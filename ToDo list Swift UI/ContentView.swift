@@ -22,7 +22,7 @@ struct ContentView: View {
                 //                ItemCellView(itemPrice: item)
                 //            }
                 VStack {
-                    ParentView()
+                    ParentView(items: $itemList)
                 }
                 
                 

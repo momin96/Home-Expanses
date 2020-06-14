@@ -21,9 +21,8 @@ class AddItemViewModel: ObservableObject {
     }
     
     func addItem() {
-        
-        let l = Item(self.itemField, price: Int(self.priceField) ?? 0)
-//        self.itemList.append(l)
+        let item = Item(self.itemField, price: Int(self.priceField) ?? 0)
+        self.items.wrappedValue.append(item)
     }
     
 }
