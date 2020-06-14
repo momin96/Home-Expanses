@@ -17,21 +17,18 @@ struct AddItemView: View {
     
     @Binding var dismissModal: Bool
     @Binding var itemList: [ItemPrice]
-    
-    @State private var itemField: String = ""
-      @State private var priceField: String = ""
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     Spacer()
-                    TextField(" Enter item", text: $itemField)
+                    TextField(" Enter item", text: $viewModel.itemField)
                         .padding(.vertical)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                     Spacer()
 
-                    TextField(" Enter Price", text: $priceField)
+                    TextField(" Enter Price", text: $viewModel.priceField)
                         .padding(.vertical)
                         .keyboardType(.numberPad)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
@@ -42,9 +39,10 @@ struct AddItemView: View {
             .navigationBarTitle("Add Item", displayMode: .inline)
             .navigationBarItems(trailing: Button("ADD") {
                 print("Add item button tapped")
-                let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
-                self.itemList.append(l)
-                self.dismissModal = false
+                
+                self.viewModel.addItem()
+        
+//                self.dismissModal = false
 //                                self.dismissModal.wrappedValue.dismiss()
             }
             .frame(width: 50.0, height: 30.0))

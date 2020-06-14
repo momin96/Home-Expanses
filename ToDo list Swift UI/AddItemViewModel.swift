@@ -11,5 +11,14 @@ import SwiftUI
 
 class AddItemViewModel: ObservableObject {
     
+    @Published var itemField: String = ""
+    @Published var priceField: String = ""
+    
+    
+    func addItem() {
+        
+        let l = ItemPrice(self.itemField, price: Int(self.priceField) ?? 0)
+//        self.itemList.append(l)
+    }
     
 }

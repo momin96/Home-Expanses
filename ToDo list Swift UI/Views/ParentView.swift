@@ -41,11 +41,12 @@ struct DaysView: View {
         VStack {
             List(itemfetcher.daysList) { day in
                 VStack {
-                    Section(header: Text(day.documentId)) {
-                        ForEach(day.documents ) {itemPrice in
-                            ItemCellView(itemPrice: itemPrice)
-                        }
-                    }
+//                    Section(header: Text(day.documentId)) {
+//                        ForEach(day.documents ) {itemPrice in
+//                            ItemCellView(itemPrice: itemPrice)
+//                        }
+//                    }
+                    Text("TODO item above commented code")
                 }
             }
         }

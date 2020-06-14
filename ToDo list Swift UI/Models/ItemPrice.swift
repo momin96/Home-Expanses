@@ -34,7 +34,8 @@ struct ParentDocument: Codable, Identifiable {
     }
 }
 
-struct ItemPrice: Codable, Hashable, Identifiable {
+class ItemPrice: Codable, ObservableObject {
+
     
     var id = UUID()
     var documentId : String?
