@@ -23,25 +23,23 @@ struct AddItemView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
+            VStack {
+                ScrollView {
                     
-                    Spacer()
-                    
-                    TextField(" Enter item", text: $viewModel.itemField)
+                    TextField(" Enter item name", text: $viewModel.itemField)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.top)
                     
                     Spacer()
                     
-                    TextField(" Enter Price", text: $viewModel.priceField)
+                    TextField(" Enter item price", text: $viewModel.priceField)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .padding(.vertical)
                     
-                    Spacer()
                 }
-                .padding(.horizontal)
             }
+            .padding(.horizontal)
             .navigationBarTitle("Add Item", displayMode: .inline)
             .navigationBarItems(
                 leading: HStack{
