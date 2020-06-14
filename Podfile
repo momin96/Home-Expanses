@@ -9,5 +9,7 @@ target 'ToDo list Swift UI' do
 pod 'Firebase/Firestore'
 pod 'Firebase'
 pod 'FirebaseFirestoreSwift'
+pod 'Firebase/Auth'
+pod 'GoogleSignIn'
 
 end
