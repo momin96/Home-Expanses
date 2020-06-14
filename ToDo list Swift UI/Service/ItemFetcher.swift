@@ -9,7 +9,7 @@
 import Foundation
 
 class Itemfetcher: ObservableObject {
-    @Published var daysList = [ParentDocument]()
+//    @Published var daysList = [ParentDocument]()
 //    var daysList: [ParentDocument] = getParentDocs()
 
     init() {
@@ -17,10 +17,10 @@ class Itemfetcher: ObservableObject {
     }
     
     func getDaysList() {
-        Service.shared.getAllDocuments { [weak self] (daysList) in
-            if let list = daysList {
-                self?.daysList = list
-            }
-        }
+//        Service.shared.getAllDocuments { [weak self] (daysList) in
+//            if let list = daysList {
+//                self?.daysList = list
+//            }
+//        }
     }
 }
