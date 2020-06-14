@@ -53,6 +53,7 @@ struct AddItemView: View {
                 trailing: HStack{
                     Button(action: {
                         self.viewModel.addItem()
+                        self.dismissModel.wrappedValue = false
                     }) {
                         Image(systemName: "plus").imageScale(.large)
                     }
