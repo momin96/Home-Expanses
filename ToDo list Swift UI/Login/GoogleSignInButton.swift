@@ -9,6 +9,7 @@
 import SwiftUI
 import GoogleSignIn
 import FirebaseAuth
+import Combine
 
 struct GoogleSignInButton: UIViewRepresentable {
     
@@ -28,11 +29,11 @@ struct GoogleSignInButton: UIViewRepresentable {
         GIDSignIn.sharedInstance()?.delegate = context.coordinator
         
         // DispatchQueue is required so that Button's frame gets update on next runloop
-//        DispatchQueue.main.async {
-//            let bounds = UIScreen.main.bounds
-//            let originY = bounds.height.half - googleSigninButton.frame.height.half
-//            googleSigninButton.frame.origin = CGPoint(x: 0, y: originY)
-//        }
+        //        DispatchQueue.main.async {
+        //            let bounds = UIScreen.main.bounds
+        //            let originY = bounds.height.half - googleSigninButton.frame.height.half
+        //            googleSigninButton.frame.origin = CGPoint(x: 0, y: originY)
+        //        }
         
         return googleSigninButton
     }
@@ -49,6 +50,9 @@ struct GoogleSignInButton: UIViewRepresentable {
         
         var control:GoogleSignInButton
         
+        // To avoid Memory leaks
+        private var cancellable: AnyCancellable?
+        
         init(_ control:GoogleSignInButton) {
             self.control = control
         }
@@ -61,16 +65,30 @@ struct GoogleSignInButton: UIViewRepresentable {
                 return
             }
             
-            AuthService(authType: .Google, authMode: .Login).authenticate(withGoogleUser: user) { [weak self] (result) in
-                switch result {
-                case .failure(let error):
+            // New combine way
+            self.cancellable = AuthService(authType: .Google, authMode: .Login)
+                .authenticate(withGoogleUser: user)?
+                .catch({ [weak self] (error) -> Empty<AuthCredential, Never> in
                     self?.control.authError.wrappedValue = error
                     self?.control.showAuthAlert.wrappedValue = true
-                    
-                case .success(let credential):
-                    print(credential)
-                }
-            }
+                    return Empty<AuthCredential, Never>()
+                })
+                .eraseToAnyPublisher()
+                .sink(receiveValue: { authCredential in
+                    print(authCredential.provider)
+                })
+            
+            // OLD way.
+            //            AuthService(authType: .Google, authMode: .Login).authenticate(withGoogleUser: user) { [weak self] (result) in
+            //                switch result {
+            //                case .failure(let error):
+            //                    self?.control.authError.wrappedValue = error
+            //                    self?.control.showAuthAlert.wrappedValue = true
+            //
+            //                case .success(let credential):
+            //                    print(credential)
+            //                }
+            //            }
         }
         
         func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

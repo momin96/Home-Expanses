@@ -9,6 +9,7 @@
 import Foundation
 import GoogleSignIn
 import FirebaseAuth
+import Combine
 
 class AuthService{
     
@@ -32,6 +33,26 @@ class AuthService{
         self.authMode = authMode
     }
     
+    // New Combine way
+    func authenticate(withGoogleUser user: GIDGoogleUser) -> AnyPublisher<AuthCredential, Error>? {
+        
+        if self.authMode == .Login {
+            return Future<AuthCredential, Error> { promise in
+                guard let authentication = user.authentication else {
+                   return promise(.failure(AppError.CredentailError))
+                }
+                
+                let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+                promise(.success(credential))
+                
+            }.eraseToAnyPublisher()
+        } else if self.authMode == .logout {
+            GIDSignIn.sharedInstance().signOut()
+        }
+        return nil
+    }
+    
+    // Old way of doing.
     func authenticate(withGoogleUser user: GIDGoogleUser, onCompletion: ((Result<AuthCredential, Error>) -> Void)? = nil) {
         
         if self.authMode == .Login {
@@ -51,19 +72,19 @@ class AuthService{
         }
     }
     
-//    func authenticate(withCredentail credential: AuthCredential) {
-//
-//        switch self.authType {
-//        case .Google:
-//            authenticateGoogle(withCredentail: credential)
-//        case .Facebook:
-//            authenticateFacebook(withCredentail: credential)
-//        case .Phone:
-//            authenticatePhone(withCredentail: credential)
-//        case .Apple:
-//            authenticateApple(withCredentail: credential)
-//        }
-//    }
+    //    func authenticate(withCredentail credential: AuthCredential) {
+    //
+    //        switch self.authType {
+    //        case .Google:
+    //            authenticateGoogle(withCredentail: credential)
+    //        case .Facebook:
+    //            authenticateFacebook(withCredentail: credential)
+    //        case .Phone:
+    //            authenticatePhone(withCredentail: credential)
+    //        case .Apple:
+    //            authenticateApple(withCredentail: credential)
+    //        }
+    //    }
     
     private func authenticateGoogle(withCredentail credential: AuthCredential) {
         if self.authMode == .Login {
