@@ -12,6 +12,13 @@ import GoogleSignIn
 
 struct AppConfig {
     static var userLoggedInKey = "userLoggedInKey"
+    
+    static var collectionMain = "Expanses"
+    static var collectionLoginHistory = "LoginHistory"
+    
+    static var fieldLastLogin = "lastLogin"
+    static var fieldLastLoginString = "lastLoginString"
+    static var fieldAppVersion = "appVersion"
 }
 
 class RootAuthViewModel: ObservableObject {

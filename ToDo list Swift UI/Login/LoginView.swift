@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import GoogleSignIn
 
 class LoginViewModel: ObservableObject {
     
@@ -15,6 +16,10 @@ class LoginViewModel: ObservableObject {
     
     init(isLoggedIn: Binding<Bool>) {
         self.isLoggedIn = isLoggedIn
+    }
+    
+    func register(user: GIDGoogleUser) {
+        LoginService().register(user: user)
     }
 }
 
@@ -34,8 +39,8 @@ struct LoginView: View {
             
             GoogleSignInButton(showAuthAlert: $showAuthAlert, authError: $authError) { (googleSignedUser) in
                 if let user = googleSignedUser {
-                    print(user)
                     self.viewModel.isLoggedIn.wrappedValue = true
+                    self.viewModel.register(user: user)
                 }
             }
             .frame(width: 250, height: 40)

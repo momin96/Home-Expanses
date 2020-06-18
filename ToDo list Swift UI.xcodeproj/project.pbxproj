@@ -21,6 +21,7 @@
 		0ED136D323FA8F6300D3379B /* ItemFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED136D223FA8F6300D3379B /* ItemFetcher.swift */; };
 		33FC6CC19756C43D0D245B4F /* Pods_ToDo_list_Swift_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */; };
 		5064590D23F95849000FD3DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5064590C23F95849000FD3DD /* GoogleService-Info.plist */; };
+		8B1557C8249B4A8500FF2319 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1557C7249B4A8500FF2319 /* LoginService.swift */; };
 		8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DD82495C31400C03504 /* AddItemViewModel.swift */; };
 		8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDA2495DF5100C03504 /* RootAuthView.swift */; };
 		8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDC2495E0B600C03504 /* LoginView.swift */; };
@@ -46,6 +47,7 @@
 		0ED136D223FA8F6300D3379B /* ItemFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFetcher.swift; sourceTree = "<group>"; };
 		5064590C23F95849000FD3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		712225F056E450B2F63C9768 /* Pods-ToDo list Swift UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.release.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.release.xcconfig"; sourceTree = "<group>"; };
+		8B1557C7249B4A8500FF2319 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8BF67DD82495C31400C03504 /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		8BF67DDA2495DF5100C03504 /* RootAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAuthView.swift; sourceTree = "<group>"; };
 		8BF67DDC2495E0B600C03504 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				8BF67DE12496296100C03504 /* AuthService.swift */,
 				0E4AFA4D23FA68EF00087DB6 /* Service.swift */,
 				0ED136D223FA8F6300D3379B /* ItemFetcher.swift */,
+				8B1557C7249B4A8500FF2319 /* LoginService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				0E01DF3B23EAC39A008E9D5A /* SceneDelegate.swift in Sources */,
 				8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */,
 				8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */,
+				8B1557C8249B4A8500FF2319 /* LoginService.swift in Sources */,
 				8BF67DE52496839D00C03504 /* ProfileView.swift in Sources */,
 				8BF67DE02496006E00C03504 /* GoogleSignInButton.swift in Sources */,
 				0E01DF3D23EAC39A008E9D5A /* ContentView.swift in Sources */,
