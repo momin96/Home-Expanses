@@ -16,6 +16,14 @@ struct AppConfig {
 
 class RootAuthViewModel: ObservableObject {
     
+    @Published var shouldLogout: Bool = false {
+        didSet {
+            initiateLogout()
+        }
+    }
+    
+    @Published var showLogin: Bool = false
+    
     var isUserLoggedIn: Bool {
         
         if GIDSignIn.sharedInstance()?.currentUser != nil {
@@ -31,6 +39,12 @@ class RootAuthViewModel: ObservableObject {
         //        let loggedIn = UserDefaults.standard.bool(forKey: AppConfig.userLoggedInKey)
         //        return loggedIn
     }
+    
+    func initiateLogout() {
+        if shouldLogout {
+            AuthService(authType: .Google, authMode: .logout).performGoogleLogout()
+        }
+    }
 }
 
 struct RootAuthView: View {
@@ -40,9 +54,9 @@ struct RootAuthView: View {
     var body: some View {
         VStack {
             if viewModel.isUserLoggedIn {
-                HomeView()
+                HomeView(shouldLogout: $viewModel.shouldLogout)
             } else {
-                LoginView()
+                LoginView(viewModel: LoginViewModel(isLoggedIn: $viewModel.showLogin))
             }
         }
     }
@@ -58,6 +72,12 @@ struct HomeView: View {
     
     @State private var selectedTab = 0
     
+    var shouldLogout: Binding<Bool>
+    
+    init(shouldLogout: Binding<Bool>) {
+        self.shouldLogout = shouldLogout
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab){
             ContentView()
@@ -65,8 +85,9 @@ struct HomeView: View {
                     Text("List")
             }.tag(0)
             
-            ProfileView()
+            ProfileView(viewModel: ProfileViewModel(shouldLogout: shouldLogout))
                 .tabItem {
+                    Image(systemName: "person")
                     Text("Profile")
             }.tag(1)
         }

@@ -11,20 +11,34 @@ import Combine
 
 class LoginViewModel: ObservableObject {
     
+    var isLoggedIn: Binding<Bool>
+    
+    init(isLoggedIn: Binding<Bool>) {
+        self.isLoggedIn = isLoggedIn
+    }
 }
 
 struct LoginView: View {
     
-    @ObservedObject var viewModel = LoginViewModel()
+    @ObservedObject var viewModel: LoginViewModel
     
     @State private var showAuthAlert: Bool = false
     @State private var authError: Error?
     
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack{
-            GoogleSignInButton(showAuthAlert: $showAuthAlert, authError: $authError)
-                .frame(width: 250, height: 40)
             
+            GoogleSignInButton(showAuthAlert: $showAuthAlert, authError: $authError) { (googleSignedUser) in
+                if let user = googleSignedUser {
+                    print(user)
+                    self.viewModel.isLoggedIn.wrappedValue = true
+                }
+            }
+            .frame(width: 250, height: 40)
         }
         .alert(isPresented: $showAuthAlert) {
             
@@ -39,6 +53,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(viewModel: LoginViewModel(isLoggedIn: .constant(false)))
     }
 }

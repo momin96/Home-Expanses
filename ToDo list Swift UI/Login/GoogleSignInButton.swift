@@ -15,10 +15,12 @@ struct GoogleSignInButton: UIViewRepresentable {
     
     var showAuthAlert: Binding<Bool>
     var authError: Binding<Error?>
+    var onCompletion: ((GIDGoogleUser?) -> Void)
     
-    init(showAuthAlert: Binding<Bool>, authError: Binding<Error?>) {
+    init(showAuthAlert: Binding<Bool>, authError: Binding<Error?>, onCompletion: @escaping ((GIDGoogleUser?) -> Void)) {
         self.showAuthAlert = showAuthAlert
         self.authError = authError
+        self.onCompletion = onCompletion
     }
     
     func makeUIView(context: Context) -> GIDSignInButton {
@@ -76,6 +78,7 @@ struct GoogleSignInButton: UIViewRepresentable {
                 .eraseToAnyPublisher()
                 .sink(receiveValue: { authCredential in
                     print(authCredential.provider)
+                    self.control.onCompletion(user)
                 })
             
             // OLD way.

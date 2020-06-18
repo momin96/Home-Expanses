@@ -10,14 +10,24 @@ import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     
+    var shouldLogout: Binding<Bool>
+    
+    init(shouldLogout: Binding<Bool>) {
+        self.shouldLogout = shouldLogout
+    }
+    
     func logout() {
-        AuthService(authType: .Google, authMode: .logout).performGoogleLogout()
+        self.shouldLogout.wrappedValue = true
     }
 }
 
 struct ProfileView: View {
     
-    @ObservedObject var viewModel = ProfileViewModel()
+    @ObservedObject var viewModel: ProfileViewModel
+    
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -37,6 +47,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(viewModel: ProfileViewModel(shouldLogout: .constant(false)))
     }
 }
