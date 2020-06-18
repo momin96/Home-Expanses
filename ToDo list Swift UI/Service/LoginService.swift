@@ -14,24 +14,33 @@ class LoginService {
     
     var db = Firestore.firestore()
     
-    func register(user: GIDGoogleUser) {
+    func register(dataResult: AuthDataResult) {
         
-        let userRef =  db.collection(AppConfig.collectionMain).document(user.userID)
+        print(Auth.auth().currentUser?.displayName as Any)
         
+        let info = dataResult.additionalUserInfo
+        
+        print(info?.providerID as Any)
+        print(info?.username as Any)
+        print(info?.isNewUser as Any)
+        
+        let currentUser = dataResult.user
+
         let loginDate = Date.epochDate
+
+        let userRef =  db.collection(AppConfig.collectionMain).document(currentUser.uid)
+        let loginHistoryRef = userRef.collection(AppConfig.collectionLoginHistory).document("\(loginDate)")
         
         var fieldData = [String: Any]()
         fieldData[AppConfig.fieldLastLogin] = loginDate
         fieldData[AppConfig.fieldLastLoginString] = Date()
         
+        var versionData = [String: Any]()
+        versionData[AppConfig.fieldAppVersion] = UIApplication.version
+        
         userRef.setData(fieldData) { (error) in
             print("error \(String(describing: error))")
         }
-        
-        let loginHistoryRef = userRef.collection(AppConfig.collectionLoginHistory).document("\(loginDate)")
-        
-        var versionData = [String: Any]()
-        versionData[AppConfig.fieldAppVersion] = UIApplication.version
         
         loginHistoryRef.setData(versionData) { (err) in
             print("err \(String(describing: err))")

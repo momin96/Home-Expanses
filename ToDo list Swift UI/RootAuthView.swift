@@ -49,7 +49,7 @@ class RootAuthViewModel: ObservableObject {
     
     func initiateLogout() {
         if shouldLogout {
-            AuthService(authType: .Google, authMode: .logout).performGoogleLogout()
+            AuthService(authType: .Google, authMode: .Logout).performGoogleLogout()
         }
     }
 }

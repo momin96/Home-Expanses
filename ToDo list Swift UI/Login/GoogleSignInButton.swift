@@ -15,9 +15,9 @@ struct GoogleSignInButton: UIViewRepresentable {
     
     var showAuthAlert: Binding<Bool>
     var authError: Binding<Error?>
-    var onCompletion: ((GIDGoogleUser?) -> Void)
+    var onCompletion: ((AuthCredential?) -> Void)
     
-    init(showAuthAlert: Binding<Bool>, authError: Binding<Error?>, onCompletion: @escaping ((GIDGoogleUser?) -> Void)) {
+    init(showAuthAlert: Binding<Bool>, authError: Binding<Error?>, onCompletion: @escaping ((AuthCredential?) -> Void)) {
         self.showAuthAlert = showAuthAlert
         self.authError = authError
         self.onCompletion = onCompletion
@@ -73,12 +73,12 @@ struct GoogleSignInButton: UIViewRepresentable {
                 .catch({ [weak self] (error) -> Empty<AuthCredential, Never> in
                     self?.control.authError.wrappedValue = error
                     self?.control.showAuthAlert.wrappedValue = true
+                    self?.control.onCompletion(nil)
                     return Empty<AuthCredential, Never>()
                 })
                 .eraseToAnyPublisher()
                 .sink(receiveValue: { authCredential in
-                    print(authCredential.provider)
-                    self.control.onCompletion(user)
+                    self.control.onCompletion(authCredential)
                 })
             
             // OLD way.
