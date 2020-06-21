@@ -7,13 +7,34 @@
 //
 
 import SwiftUI
+import Combine
+
+class ItemListViewModel: ObservableObject {
+    
+    let dbService = DatabaseService()
+    
+    @Published var itemList = createItemList()
+    
+    private var cancellable = Set<AnyCancellable>()
+    
+    init() {
+        
+        dbService.fetchItems().receive(on: RunLoop.main).sink(receiveCompletion: {
+            print($0)
+        }) { items in
+            print(items)
+            self.itemList = items
+        }.store(in: &cancellable)
+    }
+    
+}
 
 struct ContentView: View {
     
+    @ObservedObject var viewModel = ItemListViewModel()
+    
     @State private var showAddItemModel: Bool = false
-    
-    @State private var itemList = createItemList()
-    
+        
     var body: some View {
         
         NavigationView {
@@ -22,7 +43,7 @@ struct ContentView: View {
                 //                ItemCellView(itemPrice: item)
                 //            }
                 VStack {
-                    ParentView(items: $itemList)
+                    ParentView(items: $viewModel.itemList)
                 }
                 
                 
@@ -34,7 +55,7 @@ struct ContentView: View {
                 Image(systemName: "plus.circle").imageScale(.large)
             })
                 .sheet(isPresented: $showAddItemModel) {
-                    AddItemView(viewModel: AddItemViewModel(items: self.$itemList), dismissModel: self.$showAddItemModel)
+                    AddItemView(viewModel: AddItemViewModel(items: self.$viewModel.itemList), dismissModel: self.$showAddItemModel)
             }
         }
     }
