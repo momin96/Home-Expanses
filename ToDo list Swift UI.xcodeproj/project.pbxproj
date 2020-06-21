@@ -23,6 +23,7 @@
 		5064590D23F95849000FD3DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5064590C23F95849000FD3DD /* GoogleService-Info.plist */; };
 		8B1557C8249B4A8500FF2319 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1557C7249B4A8500FF2319 /* LoginService.swift */; };
 		8B29B6CB249F611800A167A9 /* ActivityLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29B6CA249F611800A167A9 /* ActivityLoadingView.swift */; };
+		8B29B6CD249F88A600A167A9 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29B6CC249F88A600A167A9 /* DatabaseService.swift */; };
 		8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DD82495C31400C03504 /* AddItemViewModel.swift */; };
 		8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDA2495DF5100C03504 /* RootAuthView.swift */; };
 		8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDC2495E0B600C03504 /* LoginView.swift */; };
@@ -50,6 +51,7 @@
 		712225F056E450B2F63C9768 /* Pods-ToDo list Swift UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.release.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.release.xcconfig"; sourceTree = "<group>"; };
 		8B1557C7249B4A8500FF2319 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8B29B6CA249F611800A167A9 /* ActivityLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLoadingView.swift; sourceTree = "<group>"; };
+		8B29B6CC249F88A600A167A9 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		8BF67DD82495C31400C03504 /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		8BF67DDA2495DF5100C03504 /* RootAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAuthView.swift; sourceTree = "<group>"; };
 		8BF67DDC2495E0B600C03504 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				0E4AFA4D23FA68EF00087DB6 /* Service.swift */,
 				0ED136D223FA8F6300D3379B /* ItemFetcher.swift */,
 				8B1557C7249B4A8500FF2319 /* LoginService.swift */,
+				8B29B6CC249F88A600A167A9 /* DatabaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B29B6CD249F88A600A167A9 /* DatabaseService.swift in Sources */,
 				0E4AFA5023FA7D8E00087DB6 /* ParentView.swift in Sources */,
 				0E01DF3923EAC39A008E9D5A /* AppDelegate.swift in Sources */,
 				0E4AFA4E23FA68EF00087DB6 /* Service.swift in Sources */,
