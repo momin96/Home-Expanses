@@ -11,17 +11,17 @@ import Combine
 
 class ItemListViewModel: ObservableObject {
     
-    let dbService = DatabaseService()
+    var dbService = DatabaseService()
     
     @Published var items: [Item] = [Item]()
-    
+    @Published var showLoader: Bool = false
     private var cancellable = Set<AnyCancellable>()
     
     init() {
+        self.showLoader = true
         dbService.fetchItems().receive(on: RunLoop.main).sink(receiveCompletion: {
             print($0)
         }) { items in
-            print(items)
             self.items = items
         }.store(in: &cancellable)
     }
@@ -39,6 +39,10 @@ struct ItemListView: View {
             VStack {
                 VStack {
                     ParentView(items: $viewModel.items)
+                }
+                .loadingOverlay(isPresented: self.$viewModel.showLoader)
+                .onReceive(self.viewModel.dbService.stopActivityIndicator) {
+                    self.viewModel.showLoader = !$0
                 }
             }
             .navigationBarTitle("Items", displayMode: .automatic)

@@ -77,6 +77,7 @@ class DatabaseService {
             .sink(receiveCompletion: {
                 // TODO: Is it a good idea to have sink operator ?
                 print($0)
+                self.stopActivityIndicator.send(true)
             }) {
             }.store(in: &self.cancellable)
         }
