@@ -40,6 +40,11 @@ struct AddItemView: View {
                 }
             }
             .padding(.horizontal)
+//            .loadingOverlay(isPresented: $viewModel.showLoader)
+//            .onReceive(viewModel.dbService.stopActivityIndicator, perform: {
+//                self.viewModel.showLoader = $0
+//                self.dismissModel.wrappedValue = false
+//            })
             .navigationBarTitle("Add Item", displayMode: .inline)
             .navigationBarItems(
                 leading: HStack{

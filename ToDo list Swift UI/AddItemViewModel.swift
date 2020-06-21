@@ -10,8 +10,12 @@ import SwiftUI
 
 class AddItemViewModel: ObservableObject {
     
+    var dbService = DatabaseService()
+    
     @Published var itemField: String = ""
     @Published var priceField: String = ""
+    
+    //@Published var showLoader: Bool = false
     
     var items: Binding<[Item]>
     
@@ -22,11 +26,7 @@ class AddItemViewModel: ObservableObject {
     func addItem() {
         let item = Item(self.itemField, price: Int(self.priceField) ?? 0)
         self.items.wrappedValue.append(item)
-        
-        let dbService = DatabaseService()
+        //self.showLoader = true
         let _ = dbService.insertInDatabase(item: item)
-            .map({
-                print("Ref = \($0)")
-            })
     }
 }

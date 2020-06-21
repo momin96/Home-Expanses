@@ -143,6 +143,8 @@ class DatabaseService {
     
     private var db = Firestore.firestore()
     
+    var stopActivityIndicator = PassthroughSubject<Bool, Never>()
+    
     private var userRef: DocumentReference? {
         guard let currentUser = Auth.auth().currentUser else { return nil }
         return db.collection(AppConfig.collectionMain).document(currentUser.uid)
@@ -155,7 +157,8 @@ class DatabaseService {
         return Future<DocumentReference, Error> { promise in
             
             guard let userRef = self.userRef else {
-                return promise(.failure(AppError.userDBRefError))
+                promise(.failure(AppError.userDBRefError))
+                return
             }
             
             let currentTimeStamp = String(Date.epochDate)
@@ -167,12 +170,21 @@ class DatabaseService {
             docRef.setData(item.toJSON()) { (error) in
                 if let error = error {
                     print("Error \(error.localizedDescription)")
-                    return promise(.failure(error))
-                }
+                    promise(.failure(error))
+                } else {
                 print("docRef \(docRef)")
-                return promise(.success(docRef))
+                promise(.success(docRef))
+                }
             }
-        }.eraseToAnyPublisher()
+        }.handleEvents(receiveSubscription: { _ in
+            self.stopActivityIndicator.send(true)
+        }, receiveOutput: { _ in
+            self.stopActivityIndicator.send(true)
+        }, receiveCompletion: { (err) in
+            print("receiveCompletion Error: \(err)")
+            self.stopActivityIndicator.send(false)
+        })
+        .eraseToAnyPublisher()
     }
     
 }
