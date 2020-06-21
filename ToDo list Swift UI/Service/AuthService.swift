@@ -10,6 +10,7 @@ import Foundation
 import GoogleSignIn
 import FirebaseAuth
 import Combine
+import Firebase
 
 class AuthService{
     
@@ -65,24 +66,24 @@ class AuthService{
     }
     
     // Old way of doing.
-//    func authenticate(withGoogleUser user: GIDGoogleUser, onCompletion: ((Result<AuthCredential, Error>) -> Void)? = nil) {
-//
-//        if self.authMode == .Login {
-//            guard let authentication = user.authentication else {
-//                if let completion = onCompletion { completion(.failure(AppError.CredentailError)) }
-//                return
-//            }
-//
-//            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-//
-//            if let completion = onCompletion {
-//                completion(.success(credential))
-//            }
-//
-//        } else if self.authMode == .Logout {
-//            GIDSignIn.sharedInstance().signOut()
-//        }
-//    }
+    //    func authenticate(withGoogleUser user: GIDGoogleUser, onCompletion: ((Result<AuthCredential, Error>) -> Void)? = nil) {
+    //
+    //        if self.authMode == .Login {
+    //            guard let authentication = user.authentication else {
+    //                if let completion = onCompletion { completion(.failure(AppError.CredentailError)) }
+    //                return
+    //            }
+    //
+    //            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+    //
+    //            if let completion = onCompletion {
+    //                completion(.success(credential))
+    //            }
+    //
+    //        } else if self.authMode == .Logout {
+    //            GIDSignIn.sharedInstance().signOut()
+    //        }
+    //    }
     
     func authenticate(withCredential credential: AuthCredential) -> AnyPublisher<AuthDataResult, Error>? {
         
@@ -124,6 +125,7 @@ class AuthService{
 
 enum AppError: Error {
     case CredentailError
+    case userDBRefError
 }
 
 extension AppError: LocalizedError {
@@ -131,6 +133,46 @@ extension AppError: LocalizedError {
         switch self {
         case .CredentailError:
             return "Credentails Error"
+        case .userDBRefError:
+            return "User Reference of Database is nil"
         }
     }
+}
+
+class DatabaseService {
+    
+    private var db = Firestore.firestore()
+    
+    private var userRef: DocumentReference? {
+        guard let currentUser = Auth.auth().currentUser else { return nil }
+        return db.collection(AppConfig.collectionMain).document(currentUser.uid)
+    }
+    
+    init() { }
+    
+    func insertInDatabase(item: Item) -> AnyPublisher<DocumentReference, Error> {
+        
+        return Future<DocumentReference, Error> { promise in
+            
+            guard let userRef = self.userRef else {
+                return promise(.failure(AppError.userDBRefError))
+            }
+            
+            let currentTimeStamp = String(Date.epochDate)
+            
+            let docRef = userRef
+                .collection(AppConfig.collectionToday)
+                .document(currentTimeStamp)
+            
+            docRef.setData(item.toJSON()) { (error) in
+                if let error = error {
+                    print("Error \(error.localizedDescription)")
+                    return promise(.failure(error))
+                }
+                print("docRef \(docRef)")
+                return promise(.success(docRef))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
 }

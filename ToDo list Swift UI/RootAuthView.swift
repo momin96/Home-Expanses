@@ -15,6 +15,7 @@ struct AppConfig {
     
     static var collectionMain = "Expanses"
     static var collectionLoginHistory = "LoginHistory"
+    static var collectionToday = "Today"
     
     static var fieldLastLogin = "lastLogin"
     static var fieldLastLoginString = "lastLoginString"

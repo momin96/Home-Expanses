@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 class AddItemViewModel: ObservableObject {
     
     @Published var itemField: String = ""
@@ -23,6 +22,11 @@ class AddItemViewModel: ObservableObject {
     func addItem() {
         let item = Item(self.itemField, price: Int(self.priceField) ?? 0)
         self.items.wrappedValue.append(item)
+        
+        let dbService = DatabaseService()
+        let _ = dbService.insertInDatabase(item: item)
+            .map({
+                print("Ref = \($0)")
+            })
     }
-    
 }

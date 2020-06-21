@@ -43,15 +43,18 @@ class Item: Codable, ObservableObject, Identifiable {
     // Codable properties
     var itemName: String
     var itemPrice: Int
+    var timeStamp: Int
     
     enum CodingKeys: String, CodingKey {
-        case itemName = "item"
-        case itemPrice = "price"
+        case itemName = "itemName"
+        case itemPrice = "itemPrice"
+        case timeStamp = "timeStamp"
     }
     
-    init(_ item: String, price: Int) {
+    init(_ item: String, price: Int, timeStamp: Int = Date.epochDate) {
         self.itemName = item
         self.itemPrice = price
+        self.timeStamp = timeStamp
     }
     
     static func performDecode(withJSONString jsonString: String) -> Item? {
@@ -81,6 +84,15 @@ class Item: Codable, ObservableObject, Identifiable {
         }
     }
     
+    func toJSON() -> [String: Any] {
+        
+        var json = [String: Any]()
+        json["itemName"] = itemName
+        json["itemPrice"] = itemPrice
+        json["timeStamp"] = timeStamp
+        
+        return json
+    }
 }
 
 func createItemList() -> [Item] {
