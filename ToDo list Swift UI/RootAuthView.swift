@@ -88,7 +88,7 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $selectedTab){
-            ContentView()
+            ItemListView()
                 .tabItem {
                     Text("List")
             }.tag(0)

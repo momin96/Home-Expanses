@@ -13,20 +13,18 @@ class ItemListViewModel: ObservableObject {
     
     let dbService = DatabaseService()
     
-    @Published var itemList = createItemList()
+    @Published var items: [Item] = [Item]()
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        
         dbService.fetchItems().receive(on: RunLoop.main).sink(receiveCompletion: {
             print($0)
         }) { items in
             print(items)
-            self.itemList = items
+            self.items = items
         }.store(in: &cancellable)
     }
-    
 }
 
 struct ItemListView: View {
@@ -39,14 +37,9 @@ struct ItemListView: View {
         
         NavigationView {
             VStack {
-                //            List(itemList) { item in
-                //                ItemCellView(itemPrice: item)
-                //            }
                 VStack {
-                    ParentView(items: $viewModel.itemList)
+                    ParentView(items: $viewModel.items)
                 }
-                
-                
             }
             .navigationBarTitle("Items", displayMode: .automatic)
             .navigationBarItems(trailing: Button(action: {
@@ -55,7 +48,7 @@ struct ItemListView: View {
                 Image(systemName: "plus.circle").imageScale(.large)
             })
                 .sheet(isPresented: $showAddItemModel) {
-                    AddItemView(viewModel: AddItemViewModel(items: self.$viewModel.itemList), dismissModel: self.$showAddItemModel)
+                    AddItemView(viewModel: AddItemViewModel(items: self.$viewModel.items), dismissModel: self.$showAddItemModel)
             }
         }
     }
