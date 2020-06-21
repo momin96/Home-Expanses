@@ -13,9 +13,10 @@ import Combine
 class DatabaseService {
     
     private var db = Firestore.firestore()
-    
+    private var cancellable = Set<AnyCancellable>()
+
     var stopActivityIndicator = PassthroughSubject<Bool, Never>()
-    
+
     private var userRef: DocumentReference? {
         guard let currentUser = Auth.auth().currentUser else { return nil }
         return db.collection(AppConfig.collectionMain).document(currentUser.uid)
@@ -58,10 +59,11 @@ class DatabaseService {
             .eraseToAnyPublisher()
     }
     
+    
     func fetchItems() -> AnyPublisher<[Item], Error> {
         
         return Future<[Item], Error> { promise in
-            let _ = self.fetchDocuments()
+            return self.fetchDocuments()
                 .catch({ (error) -> Empty<[QueryDocumentSnapshot], Error> in
                     promise(.failure(error))
                     return Empty<[QueryDocumentSnapshot], Error>()
@@ -71,7 +73,12 @@ class DatabaseService {
                     print("In map \(items)")
                     promise(.success(items))
             }
-            .handleEvents()
+            .subscribe(on: RunLoop.main)
+            .sink(receiveCompletion: {
+                // TODO: Is it a good idea to have sink operator ?
+                print($0)
+            }) {
+            }.store(in: &self.cancellable)
         }
         .eraseToAnyPublisher()
     }
