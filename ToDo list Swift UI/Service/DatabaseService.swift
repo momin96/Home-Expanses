@@ -12,7 +12,7 @@ import Combine
 
 class DatabaseService {
     
-    private var db = Firestore.firestore()
+    private var db =  Firestore.firestore()
     private var cancellable = Set<AnyCancellable>()
 
     var stopActivityIndicator = PassthroughSubject<Bool, Never>()

@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-import FirebaseFirestore
+//import FirebaseFirestore
 
 let KEY_EXPANSES = "Expanses"
 let KEY_TODAY = "Today"
