@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 //struct ParentDocument: Codable, Identifiable {
 //    
@@ -36,7 +37,6 @@ import Foundation
 
 class Item: Codable, ObservableObject, Identifiable {
 
-    
     var id = UUID()
     var documentId : String?
     
@@ -55,6 +55,19 @@ class Item: Codable, ObservableObject, Identifiable {
         self.itemName = item
         self.itemPrice = price
         self.timeStamp = timeStamp
+    }
+    
+    
+    // TODO: Need to improve initilizer
+    init(queryDocumentSnapshot query: QueryDocumentSnapshot) {
+        
+        self.documentId = query.documentID
+        
+        let data = query.data()
+        
+        self.itemName = data[CodingKeys.itemName.rawValue] as? String ?? "Unknown Item"
+        self.itemPrice = data[CodingKeys.itemPrice.rawValue] as? Int  ?? -999
+        self.timeStamp = data[CodingKeys.timeStamp.rawValue] as? Int ?? -999
     }
     
     static func performDecode(withJSONString jsonString: String) -> Item? {

@@ -10,7 +10,6 @@ import Foundation
 import GoogleSignIn
 import FirebaseAuth
 import Combine
-import Firebase
 
 class AuthService{
     
@@ -126,6 +125,8 @@ class AuthService{
 enum AppError: Error {
     case CredentailError
     case userDBRefError
+    case itemFetchError
+    case emptyItemList
 }
 
 extension AppError: LocalizedError {
@@ -135,44 +136,10 @@ extension AppError: LocalizedError {
             return "Credentails Error"
         case .userDBRefError:
             return "User Reference of Database is nil"
+        case .itemFetchError:
+            return "Item Fetching Error"
+        case .emptyItemList:
+            return "Empty Item List"
         }
     }
-}
-
-class DatabaseService {
-    
-    private var db = Firestore.firestore()
-    
-    private var userRef: DocumentReference? {
-        guard let currentUser = Auth.auth().currentUser else { return nil }
-        return db.collection(AppConfig.collectionMain).document(currentUser.uid)
-    }
-    
-    init() { }
-    
-    func insertInDatabase(item: Item) -> AnyPublisher<DocumentReference, Error> {
-        
-        return Future<DocumentReference, Error> { promise in
-            
-            guard let userRef = self.userRef else {
-                return promise(.failure(AppError.userDBRefError))
-            }
-            
-            let currentTimeStamp = String(Date.epochDate)
-            
-            let docRef = userRef
-                .collection(AppConfig.collectionToday)
-                .document(currentTimeStamp)
-            
-            docRef.setData(item.toJSON()) { (error) in
-                if let error = error {
-                    print("Error \(error.localizedDescription)")
-                    return promise(.failure(error))
-                }
-                print("docRef \(docRef)")
-                return promise(.success(docRef))
-            }
-        }.eraseToAnyPublisher()
-    }
-    
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E01DF3923EAC39A008E9D5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E01DF3823EAC39A008E9D5A /* AppDelegate.swift */; };
 		0E01DF3B23EAC39A008E9D5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E01DF3A23EAC39A008E9D5A /* SceneDelegate.swift */; };
-		0E01DF3D23EAC39A008E9D5A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E01DF3C23EAC39A008E9D5A /* ContentView.swift */; };
+		0E01DF3D23EAC39A008E9D5A /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E01DF3C23EAC39A008E9D5A /* ItemListView.swift */; };
 		0E01DF3F23EAC3C3008E9D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E01DF3E23EAC3C3008E9D5A /* Assets.xcassets */; };
 		0E01DF4223EAC3C3008E9D5A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E01DF4123EAC3C3008E9D5A /* Preview Assets.xcassets */; };
 		0E01DF4523EAC3C3008E9D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E01DF4323EAC3C3008E9D5A /* LaunchScreen.storyboard */; };
@@ -22,6 +22,8 @@
 		33FC6CC19756C43D0D245B4F /* Pods_ToDo_list_Swift_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4CD13DDFC682EC60ECABCBD /* Pods_ToDo_list_Swift_UI.framework */; };
 		5064590D23F95849000FD3DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5064590C23F95849000FD3DD /* GoogleService-Info.plist */; };
 		8B1557C8249B4A8500FF2319 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1557C7249B4A8500FF2319 /* LoginService.swift */; };
+		8B29B6CB249F611800A167A9 /* ActivityLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29B6CA249F611800A167A9 /* ActivityLoadingView.swift */; };
+		8B29B6CD249F88A600A167A9 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29B6CC249F88A600A167A9 /* DatabaseService.swift */; };
 		8BF67DD92495C31400C03504 /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DD82495C31400C03504 /* AddItemViewModel.swift */; };
 		8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDA2495DF5100C03504 /* RootAuthView.swift */; };
 		8BF67DDD2495E0B600C03504 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF67DDC2495E0B600C03504 /* LoginView.swift */; };
@@ -34,7 +36,7 @@
 		0E01DF3523EAC39A008E9D5A /* ToDo list Swift UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo list Swift UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E01DF3823EAC39A008E9D5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E01DF3A23EAC39A008E9D5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0E01DF3C23EAC39A008E9D5A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0E01DF3C23EAC39A008E9D5A /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		0E01DF3E23EAC3C3008E9D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E01DF4123EAC3C3008E9D5A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0E01DF4423EAC3C3008E9D5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		5064590C23F95849000FD3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		712225F056E450B2F63C9768 /* Pods-ToDo list Swift UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo list Swift UI.release.xcconfig"; path = "Target Support Files/Pods-ToDo list Swift UI/Pods-ToDo list Swift UI.release.xcconfig"; sourceTree = "<group>"; };
 		8B1557C7249B4A8500FF2319 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		8B29B6CA249F611800A167A9 /* ActivityLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLoadingView.swift; sourceTree = "<group>"; };
+		8B29B6CC249F88A600A167A9 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		8BF67DD82495C31400C03504 /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		8BF67DDA2495DF5100C03504 /* RootAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAuthView.swift; sourceTree = "<group>"; };
 		8BF67DDC2495E0B600C03504 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -97,8 +101,9 @@
 				8BF67DE324963F0800C03504 /* Login */,
 				0E01DF4C23EAD577008E9D5A /* AddItemView.swift */,
 				8BF67DD82495C31400C03504 /* AddItemViewModel.swift */,
-				0E01DF3C23EAC39A008E9D5A /* ContentView.swift */,
+				0E01DF3C23EAC39A008E9D5A /* ItemListView.swift */,
 				8BF67DE42496839D00C03504 /* ProfileView.swift */,
+				8B29B6CA249F611800A167A9 /* ActivityLoadingView.swift */,
 				0E4AFA4F23FA7D8E00087DB6 /* ParentView.swift */,
 				0E01DF4E23EAD81E008E9D5A /* ItemCellView.swift */,
 				0E4AFA4C23FA68EF00087DB6 /* Service */,
@@ -135,6 +140,7 @@
 				0E4AFA4D23FA68EF00087DB6 /* Service.swift */,
 				0ED136D223FA8F6300D3379B /* ItemFetcher.swift */,
 				8B1557C7249B4A8500FF2319 /* LoginService.swift */,
+				8B29B6CC249F88A600A167A9 /* DatabaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B29B6CD249F88A600A167A9 /* DatabaseService.swift in Sources */,
 				0E4AFA5023FA7D8E00087DB6 /* ParentView.swift in Sources */,
 				0E01DF3923EAC39A008E9D5A /* AppDelegate.swift in Sources */,
 				0E4AFA4E23FA68EF00087DB6 /* Service.swift in Sources */,
@@ -309,9 +316,10 @@
 				8B1557C8249B4A8500FF2319 /* LoginService.swift in Sources */,
 				8BF67DE52496839D00C03504 /* ProfileView.swift in Sources */,
 				8BF67DE02496006E00C03504 /* GoogleSignInButton.swift in Sources */,
-				0E01DF3D23EAC39A008E9D5A /* ContentView.swift in Sources */,
+				0E01DF3D23EAC39A008E9D5A /* ItemListView.swift in Sources */,
 				0E01DF4D23EAD577008E9D5A /* AddItemView.swift in Sources */,
 				0ED136D323FA8F6300D3379B /* ItemFetcher.swift in Sources */,
+				8B29B6CB249F611800A167A9 /* ActivityLoadingView.swift in Sources */,
 				0E4AFA4B23FA68BE00087DB6 /* Item.swift in Sources */,
 				8BF67DDB2495DF5100C03504 /* RootAuthView.swift in Sources */,
 				8BF67DE22496296100C03504 /* AuthService.swift in Sources */,
