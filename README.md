@@ -11,4 +11,6 @@ Following is tech stach is being used in its development.
 Upcomings
 - SiriKit.
 - Sign In with Apple.
+- CoreML
+- Notification with Firebase
 - Firebase Distibution. 
