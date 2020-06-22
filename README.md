@@ -1,7 +1,8 @@
 # Home-Expanses
 
 This app manages to Daily expanses.
-Following is tech stach is being used in its development.
+
+Following is tech stack is being used in its development.
 
 - Entire app is written in SwiftUI only.
 - Firebase Auth. 
